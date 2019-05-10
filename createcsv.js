@@ -12,7 +12,7 @@ exports.createcsv=function(data,filename){
     dataheader.forEach((e) =>{
         headerrow.push(e);
      })
-    output.push(headerrow.join()); // just header
+    output.push(dataheader.join()); // just header
     data.forEach((d) => {
         const datakeys = Object.keys(d)
         const row = []; // a new array for each row of data
