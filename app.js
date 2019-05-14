@@ -12,13 +12,17 @@ var con = mysql.createConnection({
   database: "soraya_ai_accuracy"
 });
 
+con.connect(function(err) {       //initial sql connection for handling handshake issue
+  console.log('create intial connection ');
+  if (err) throw err;
+  });
 
 console.log('System worker is running');
 psn.telegram('Worker Querying Bot is running');
 
 
 console.log('run on scheduler every 4 hour');
-var j = schedule.scheduleJob('* */4 * * *', function()
+var j = schedule.scheduleJob('* */4 * * *', function()  // scheduler
 {
 db1.sql1(con);
 console.log('execute Order Detail Data SQL');
@@ -26,13 +30,12 @@ console.log('execute Order Detail Data SQL');
 setTimeout(function(){
   db2.sql2(con)
   console.log('execute Order Analytics SQL');
-},20000); // 20 seconds as delay process 
+},50000); // 50 seconds as delay process 
 
 
 setTimeout(function(){
   db3.sql3(con)
   console.log('execute Member Analytics SQL');
-},5000); // 20 seconds as delay process 
+},50000); // 50 seconds as delay process 
 
 });
-

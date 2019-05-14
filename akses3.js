@@ -12,9 +12,9 @@ exports.sql3=function(con){
 
   var sqlresult=null;
   var hasil =[];
-  con.connect(function(err) {
+  /*con.connect(function(err) {
     console.log('run query3');
-    if (err) throw err;
+    if (err) throw err; */
     var sql = `SELECT 
     date_format(date_add(mb.date_registered_utc, interval 7 hour),'%d-%M-%Y') AS 'Member create date ',
     COUNT(mb.date_registered_utc) AS 'total member',
@@ -36,8 +36,8 @@ exports.sql3=function(con){
         setvalue(result); // save and ensure for querying process already done and ready to exported into spreadsheet
         ccsv.createcsv(result,'member_analytics.csv');
     });
-  });
-
+  //});
+      
       function setvalue(value){
       hasil=value;  // temporary variable
       console.log('number of data',hasil.length);
@@ -55,13 +55,10 @@ exports.sql3=function(con){
          });
        }
     });
-            setTimeout((function() {  
-              return process.exit(22);
-                 }), 10000);
     });
     }
 
       psn.telegram('Querying process of "Member Analytics" already finished and it was uploaded to https://docs.google.com/spreadsheets/d/1JjjEkxv8m8AfGgwKsQWTE1Y9NOe0G2IH9HEn5URhN7Q');
-
+  
 
 }

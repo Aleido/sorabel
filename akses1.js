@@ -11,9 +11,9 @@ exports.sql1=function(con){
 
   var sqlresult=null;
   var hasil =[];
-  con.connect(function(err) {
+  /*con.connect(function(err) {
     console.log('run query1');
-    if (err) throw err;
+    if (err) throw err;*/
     var sql = `SELECT od.order_public_id, 
     date_format(date_add(od.order_created_time_utc, interval 7 hour),'%d-%M-%Y') AS 'Order create Date WIB',
     phone_number, mp.city, mp.province, 
@@ -40,10 +40,9 @@ exports.sql1=function(con){
         setvalue(result);
         console.log(result.length);
         //console.log(result);
-        //setvalue(result);
        ccsv.createcsv(result,'order_detail_data.csv');
       });      
-  });
+  //});
       function setvalue(value){
       hasil=value;  // temporary variable
       console.log('number of data',hasil.length);

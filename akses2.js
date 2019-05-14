@@ -12,9 +12,9 @@ exports.sql2=function(con){
   
   var sqlresult=null;
   var hasil =[];
-  con.connect(function(err) {
+  /*con.connect(function(err) {
     console.log('run query2');
-    if (err) throw err;
+    if (err) throw err;*/
     var sql = `SELECT 
     date_format(date_add(od.order_created_time_utc, interval 7 hour),'%d-%M-%Y') AS 'Order create Date WIB',
     #date_add(order_created_time_utc, interval 7 hour) AS 'Order create Date WIB', 
@@ -44,7 +44,7 @@ exports.sql2=function(con){
         console.log(result.length);
         ccsv.createcsv(result,'order_analytics.csv');
     });
-  });
+  //});
 
       function setvalue(value){
       hasil=value;  // temporary variable
